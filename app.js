@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
     res.send("İndex sayfası")
 })
 
+app.get('/about', (req, res) => {
+    res.send("About Sayfası")
+})
+
 const PORT = 3000;
 
 
