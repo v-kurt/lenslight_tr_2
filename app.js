@@ -1,20 +1,30 @@
 import express from "express";
+import dotenv from 'dotenv';
+import conn from './db.js';
+import pageRoute from "./routes/pageRoute.js";
+import photoRoute from "./routes/photoRoute.js";
+
+dotenv.config();
+conn();
 
 const app = express();
+const port = process.env.PORT;
 
 
-app.get('/', (req, res) => {
-    res.send("İndex sayfası")
-})
-
-app.get('/about', (req, res) => {
-    res.send("About Sayfası")
-})
-
-const PORT = 3000;
 
 
-app.listen(PORT, () => {
-    console.log("App is running")
+app.set('view engine', 'ejs')
+
+
+app.use(express.static('public'))
+app.use(express.json())
+
+app.use('/', pageRoute)
+app.use('/photos', photoRoute)
+
+
+
+app.listen(port, () => {
+    console.log(`App is running on port ${port}`)
 })
 
