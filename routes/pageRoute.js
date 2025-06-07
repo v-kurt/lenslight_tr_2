@@ -5,11 +5,10 @@ const router = express.Router();
 
 router.route('/').get(pageController.getIndexPage);
 router.route('/about').get(pageController.getAboutPage);
-router.route('/contact').get(pageController.getContactPage);
-router.route('/services').get(pageController.getServicesPage);
-router.route('/gallery').get(pageController.getGalleryPage);
-router.route('/projects').get(pageController.getProjectsPage);
-router.route('/blog').get(pageController.getBlogPage);
+router.route('/register').get(pageController.getRegsiterPage);
+router.route('/login').get(pageController.getLoginPage);
+router.route('/logout').get(pageController.getLogout);
+
 
 
 

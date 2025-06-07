@@ -1,31 +1,33 @@
 const getIndexPage = (req, res) => {
-    res.render('index')
-}
+    res.render("index", {
+        link: "index",
+    });
+};
 
 const getAboutPage = (req, res) => {
-    res.render('about')
-}
+    res.render("about", {
+        link: "about",
+    });
+};
 
-const getServicesPage = (req, res) => {
-    res.render('services')
-}
+const getRegsiterPage = (req, res) => {
+    res.render("register", {
+        link: "register",
+    });
+};
 
-const getGalleryPage = (req, res) => {
-    res.render('gallery')
-}
+const getLoginPage = (req, res) => {
+    res.render("login", {
+        link: "login",
+    });
+};
 
-const getProjectsPage = (req, res) => {
-    res.render('projects')
-}
-
-const getBlogPage = (req, res) => {
-    res.render('blog')
-}
-
-const getContactPage = (req, res) => {
-    res.render('contact')
-}
-
+const getLogout = (req, res) => {
+    res.cookie("jwt", " ", {
+        maxAge: 1
+    })
+    res.redirect("/")
+};
 
 
-export { getIndexPage, getAboutPage, getBlogPage, getContactPage, getGalleryPage, getProjectsPage, getServicesPage }
+export { getIndexPage, getAboutPage, getRegsiterPage, getLoginPage, getLogout };

@@ -6,7 +6,7 @@ const conn = () => {
             console.log("connected db")
         })
         .catch((err) => {
-            console.log(`Error is ${err}`)
+            console.log(`Error is:  ${err}`)
         })
 }
 
