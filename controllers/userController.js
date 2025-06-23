@@ -8,9 +8,6 @@ const createUser = async (req, res) => {
     // res.status(201).redirect("/login");
     res.status(201).json({ user: user._id });
   } catch (error) {
-    console.log(Object.keys(error));
-    console.log(error.code);
-
     let errors2 = {};
 
     if (error.code === 11000) {
@@ -21,8 +18,6 @@ const createUser = async (req, res) => {
       Object.keys(error.errors).forEach((key) => {
         errors2[key] = error.errors[key].message;
       });
-
-      console.log(errors2);
     }
 
     res.status(400).json(errors2);
