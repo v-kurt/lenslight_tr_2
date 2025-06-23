@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <!-- <script>
+      <script>
 
         const form = document.querySelector('form');
         const emailError = document.querySelector('#email');
@@ -83,9 +83,12 @@
               headers: { "Content-Type": "application/json" }
             })
 
-            const data = await res.json();
 
-            if (data && Object.getOwnPropertyNames(data).length !== 0) {
+
+            const data = await res.json();
+            console.log(data)
+
+            if (data) {
               if (data.email) {
                 emailError.textContent = data.email;
                 emailError.style.display = "block"
@@ -105,9 +108,14 @@
                 usernameError.style.display = "block"
 
               }
-            } else {
-              location.assign("/login")
             }
+
+            if (data) {
+              location.assign("/login")
+
+            }
+
+
 
 
           } catch (err) {
@@ -119,7 +127,7 @@
 
         })
 
-      </script> -->
+      </script>
 
       <!-- end contact -->
       <%- include("partials/_footer") %>
