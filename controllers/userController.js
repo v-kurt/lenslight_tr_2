@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    // res.status(201).redirect("/login");
     res.status(201).json({ user: user._id });
   } catch (error) {
     let errors2 = {};
