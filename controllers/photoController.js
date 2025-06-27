@@ -1,16 +1,30 @@
 import Photo from "../models/photoModel.js";
+import { v2 as cloudinary } from "cloudinary";
+import fs from "fs";
 
 const createPhoto = async (req, res) => {
   try {
-    const photo = await Photo.create(req.body);
-    res.status(201).json({
-      succeded: true,
-      photo,
+    const result = await cloudinary.uploader.upload(
+      req.files.image.tempFilePath,
+      {
+        use_filename: true,
+        folder: "lenslight_tr",
+      }
+    );
+
+    await Photo.create({
+      name: req.body.name,
+      description: req.body.description,
+      user: res.locals.user._id,
+      url: result.secure_url,
     });
+    fs.unlinkSync(req.files.image.tempFilePath);
+    res.status(201).redirect("/users/dashboard");
   } catch (error) {
+    console.error("Photo upload failed:", error);
     res.status(500).json({
       succeded: false,
-      error,
+      error: error.message || error,
     });
   }
 };
@@ -32,7 +46,7 @@ const getAllPhotos = async (req, res) => {
 
 const getAPhoto = async (req, res) => {
   try {
-    const photo = await Photo.findById({ _id: req.params.id });
+    const photo = await Photo.findById({ _id: req.params.id }).populate("user");
     res.status(200).render("photo", {
       photo,
       link: "photos",

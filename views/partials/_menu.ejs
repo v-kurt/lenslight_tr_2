@@ -21,7 +21,11 @@
                 <a class="<%= link === 'photos' && 'active' %>" href="/photos">Photos</a>
               </li>
 
+
               <% if(locals.user) { %>
+                <li>
+                  <a class="<%= link === 'users' && 'active' %>" href="/users">Users</a>
+                </li>
 
                 <li>
                   <a class="<%= link === 'users/dashboard' && 'active' %>" href="/users/dashboard">Dashboard</a>
