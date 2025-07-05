@@ -146,6 +146,4 @@ dist
 
 lenslight_html/
 
-learn_objects.js/
-
-lesson14script.js/
+lesson_objects.js
