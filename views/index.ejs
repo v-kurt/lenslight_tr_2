@@ -69,9 +69,11 @@
                                        <div class="row d_flex">
                                           <div class="col-md-12">
                                              <div class="cemara">
-                                                <figure><img
-                                                      src="<%= photos[2].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
-                                                      alt="#" /></figure>
+                                                <% if (photos[2]) { %>
+                                                   <figure><img
+                                                         src="<%= photos[2].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
+                                                         alt="#" /></figure>
+                                                   <% } %>
                                              </div>
                                           </div>
                                        </div>
