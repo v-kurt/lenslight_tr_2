@@ -37,9 +37,11 @@
                                        <div class="row d_flex">
                                           <div class="col-md-12">
                                              <div class="cemara">
-                                                <figure><img
-                                                      src="<%= photos[0].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
-                                                      alt="#" /></figure>
+                                                <% if (photos[0]) { %>
+                                                   <figure><img
+                                                         src="<%= photos[0].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
+                                                         alt="#" /></figure>
+                                                   <% } %>
                                              </div>
                                           </div>
                                        </div>
@@ -53,9 +55,11 @@
                                        <div class="row d_flex">
                                           <div class="col-md-12">
                                              <div class="cemara">
-                                                <figure><img
-                                                      src="<%= photos[1].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
-                                                      alt="#" /></figure>
+                                                <% if (photos[1]) { %>
+                                                   <figure><img
+                                                         src="<%= photos[1].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
+                                                         alt="#" /></figure>
+                                                   <% } %>
                                              </div>
                                           </div>
                                        </div>
