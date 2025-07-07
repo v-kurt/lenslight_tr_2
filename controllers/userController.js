@@ -36,7 +36,7 @@ const loginUser = async (req, res) => {
       same = await bcrypt.compare(password, user.password);
     } else {
       return res.status(401).json({
-        succeded: false,
+        success: false,
         error: "There is no such person",
       });
     }
@@ -50,13 +50,13 @@ const loginUser = async (req, res) => {
       res.status(200).redirect("/users/dashboard");
     } else {
       res.status(401).json({
-        succeded: false,
+        success: false,
         error: "You are not authorized",
       });
     }
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error: "Internal Error",
     });
   }
@@ -89,7 +89,7 @@ const getAllUsers = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }
@@ -113,7 +113,7 @@ const getAUser = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }
@@ -141,7 +141,7 @@ const follow = async (req, res) => {
     res.status(200).redirect(`/users/${req.params.id}`);
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }
@@ -170,7 +170,7 @@ const unfollow = async (req, res) => {
     );
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }

@@ -24,7 +24,7 @@ const createPhoto = async (req, res) => {
   } catch (error) {
     console.error("Photo upload failed:", error);
     res.status(500).json({
-      succeded: false,
+      success: false,
       error: error.message || error,
     });
   }
@@ -42,7 +42,7 @@ const getAllPhotos = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }
@@ -51,13 +51,26 @@ const getAllPhotos = async (req, res) => {
 const getAPhoto = async (req, res) => {
   try {
     const photo = await Photo.findById({ _id: req.params.id }).populate("user");
+
+    // console.log("photo", photo);
+    // console.log("user", photo.user);
+
+    let isOwner = false;
+
+    if (res.locals.user) {
+      isOwner = photo.user._id.equals(res.locals.user._id);
+    }
+
+    console.log(isOwner);
+
     res.status(200).render("photo", {
       photo,
       link: "photos",
+      isOwner,
     });
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }
@@ -74,10 +87,45 @@ const deletePhoto = async (req, res) => {
     res.status(200).redirect("/users/dashboard");
   } catch (error) {
     res.status(500).json({
-      succeded: false,
+      success: false,
       error,
     });
   }
 };
 
-export { createPhoto, getAllPhotos, getAPhoto, deletePhoto };
+const updatePhoto = async (req, res) => {
+  try {
+    const photo = await Photo.findById(req.params.id);
+
+    if (req.files) {
+      const photoId = photo.image_id;
+      await cloudinary.uploader.destroy(photoId);
+
+      const result = await cloudinary.uploader.upload(
+        req.files.image.tempFilePath,
+        {
+          use_filename: true,
+          folder: "lenslight_tr",
+        }
+      );
+
+      photo.url = result.secure_url;
+      photo.image_id = result.public_id;
+
+      fs.unlinkSync(req.files.image.tempFilePath);
+    }
+
+    photo.name = req.body.name;
+    photo.description = req.body.description;
+    photo.save();
+
+    res.status(200).redirect(`/photos/${req.params.id}`);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error,
+    });
+  }
+};
+
+export { createPhoto, getAllPhotos, getAPhoto, deletePhoto, updatePhoto };

@@ -38,7 +38,7 @@ const authenticateToken = async (req, res, next) => {
     }
   } catch (error) {
     res.status(401).json({
-      succeded: false,
+      success: false,
       error: "Not Authorized",
     });
   }

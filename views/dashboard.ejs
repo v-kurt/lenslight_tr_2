@@ -70,7 +70,8 @@
                                 <% for (photo of photos) { %>
                                     <div class="col-lg-4 col-md-6 ma_bottom30">
                                         <div class="lightbox">
-                                            <img src="<%=photo.url %>" alt="<%=photo.name %>">
+                                            <img src="<%=photo.url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
+                                                alt="<%=photo.name %>">
                                             <div class="view_main">
                                                 <div class="pose">
                                                     <a class="read_more" href="/photos/<%= photo.id  %>"><img
@@ -222,10 +223,10 @@
                                                         <div class="col-md-12 ">
                                                             <div class="text_align_center">
                                                                 <h2 style="
-                    font-size: 30px;
-                    margin-bottom: 20px;
-                    color: #D43A8E;
-                ">Photo Details</h2>
+                                                                            font-size: 30px;
+                                                                            margin-bottom: 20px;
+                                                                            color: #D43A8E;
+                                                                        ">Photo Details</h2>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-10 offset-md-1">

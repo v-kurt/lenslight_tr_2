@@ -22,6 +22,7 @@
               </li>
 
 
+
               <% if(locals.user) { %>
                 <li>
                   <a class="<%= link === 'users' && 'active' %>" href="/users">Users</a>
@@ -44,6 +45,10 @@
                   </li>
 
                   <% } %>
+
+                    <li>
+                      <a class="<%= link === 'contact' && 'active' %>" href="/contact">Contact</a>
+                    </li>
             </ul>
             <button class="nav-toggler">
               <span></span>
