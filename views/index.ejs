@@ -67,23 +67,25 @@
                                  </div>
                               </div>
                               <!-- third slide-->
-                              <div class="carousel-item">
-                                 <div class="container">
-                                    <div class="carousel-caption relative">
-                                       <div class="row d_flex">
-                                          <div class="col-md-12">
-                                             <div class="cemara">
-                                                <% if (photos[2]) { %>
+                              <% if (photos[2]) { %>
+                                 <div class="carousel-item">
+                                    <div class="container">
+                                       <div class="carousel-caption relative">
+                                          <div class="row d_flex">
+                                             <div class="col-md-12">
+                                                <div class="cemara">
+
                                                    <figure><img
                                                          src="<%= photos[2].url.replace('/upload', '/upload/w_600,h_600,c_fill') %>"
                                                          alt="#" /></figure>
-                                                   <% } %>
+
+                                                </div>
                                              </div>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
-                              </div>
+                                 <% } %>
                            </div>
                            <!-- controls -->
                            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
